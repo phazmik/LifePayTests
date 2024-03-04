@@ -369,14 +369,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Успешная регистрация")]
+        [NUnit.Framework.DescriptionAttribute("Успешная авторизация")]
         [NUnit.Framework.CategoryAttribute("successful_auth_no_inplimentation")]
-        public virtual void УспешнаяРегистрация()
+        public virtual void УспешнаяАвторизация()
         {
             string[] tagsOfScenario = new string[] {
                     "successful_auth_no_inplimentation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Успешная регистрация", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Успешная авторизация", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 77
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -401,24 +401,75 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Открыта страница авторизации LifePay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Допустим ");
 #line hidden
 #line 79
- testRunner.And("данные регистрации известны", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
+ testRunner.And("данные авторизации известны", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
 #line 80
  testRunner.When("поле ввода Номер телефона заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
 #line 81
- testRunner.And("поле ввода Код из SMS заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
-#line hidden
-#line 82
- testRunner.And("поле ввода Ваше имя и фамилия заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
-#line hidden
-#line 83
  testRunner.And("поле ввода Пароль заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 84
+#line 82
+ testRunner.And("нажата кнопка Войти в личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
+#line hidden
+#line 83
+ testRunner.Then("происходит редирект в личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Успешная регистрация")]
+        [NUnit.Framework.CategoryAttribute("successful_reg_no_inplimentation")]
+        public virtual void УспешнаяРегистрация()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "successful_reg_no_inplimentation"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Успешная регистрация", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 86
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 87
+ testRunner.Given("Открыта страница авторизации LifePay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Допустим ");
+#line hidden
+#line 88
+ testRunner.And("данные регистрации известны", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
+#line hidden
+#line 89
+ testRunner.When("поле ввода Номер телефона заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
+#line hidden
+#line 90
+ testRunner.And("поле ввода Код из SMS заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
+#line hidden
+#line 91
+ testRunner.And("поле ввода Ваше имя и фамилия заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
+#line hidden
+#line 92
+ testRunner.And("поле ввода Пароль заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
+#line hidden
+#line 93
  testRunner.And("нажата кнопка Создать личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 85
+#line 94
  testRunner.Then("происходит редирект в личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
