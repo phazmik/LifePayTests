@@ -39,7 +39,7 @@ namespace LifePayTests.StepDefinitions
         public void ThenОтображается(string message)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var _pageObjectModel = new PageSignInObjectModel(driver);    
+            var _pageObjectModel = new SignInPage(driver);    
             Assert.IsTrue(_pageObjectModel.MessageElement(message).Displayed, "Greeting message is wrong");
             driver.Close();
             ToolsForTests.setTime(ToolsForTests.GetAPITimeMoscow().Result);
@@ -49,7 +49,7 @@ namespace LifePayTests.StepDefinitions
         public void WhenПроисходитНажатиеНаСсылку(string linkName)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var _pageObjectModel = new PageSignInObjectModel(driver);
+            var _pageObjectModel = new SignInPage(driver);
             switch (linkName)
             {
                 case "Восстановить пароль":
@@ -92,7 +92,7 @@ namespace LifePayTests.StepDefinitions
         public void WhenПолеВводаНомерТелефонаЗаполнено()
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var _pageObjectModel = new PageSignInObjectModel(driver);
+            var _pageObjectModel = new SignInPage(driver);
             _pageObjectModel.inputTelephoneElement.Clear();
             _pageObjectModel.inputTelephoneElement.SendKeys(toolsForTests._login);
         }
@@ -101,7 +101,7 @@ namespace LifePayTests.StepDefinitions
         public void WhenПолеВводаПарольЗаполнено()
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var _pageObjectModel = new PageSignInObjectModel(driver);
+            var _pageObjectModel = new SignInPage(driver);
             _pageObjectModel.inputPasswordElement.Clear();
             _pageObjectModel.inputPasswordElement.SendKeys(toolsForTests._pass);
         }
@@ -110,7 +110,7 @@ namespace LifePayTests.StepDefinitions
         public void ThenПоляВводаПринимаютСоответствующиеЗначения()
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var _pageObjectModel = new PageSignInObjectModel(driver);
+            var _pageObjectModel = new SignInPage(driver);
             string currentLogin = _pageObjectModel.inputTelephoneElement.GetAttribute("value");
             string currentPass = _pageObjectModel.inputPasswordElement.GetAttribute("value");
             
@@ -141,7 +141,7 @@ namespace LifePayTests.StepDefinitions
         public void ThenОтображаетсяСообщениеНомерНеЗарегистрирован()
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var _pageObjectModel = new PageSignInObjectModel(driver);
+            var _pageObjectModel = new SignInPage(driver);
             Thread.Sleep(250);
             Assert.IsTrue(_pageObjectModel.noRegNumberElement.Displayed, "Message is missing");
             driver.Close();
@@ -161,7 +161,7 @@ namespace LifePayTests.StepDefinitions
         public void ThenОтображаетсяСообщениеВведитеНомерВФормате(string p0)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var _pageObjectModel = new PageSignInObjectModel(driver);
+            var _pageObjectModel = new SignInPage(driver);
             Assert.IsTrue(_pageObjectModel.inputCorrectNumberElement.Displayed, "Message is missing");
             driver.Close();
         }
@@ -180,7 +180,7 @@ namespace LifePayTests.StepDefinitions
         public void ThenОтображаетсяСообщениеЗначениеДолжноБытьНеМенееЗнаков(int p0)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var _pageObjectModel = new PageSignInObjectModel(driver);
+            var _pageObjectModel = new SignInPage(driver);
             Assert.IsTrue(_pageObjectModel.inputCorrectPasswordElement.Displayed, "Message is missing");
             driver.Close();
         }

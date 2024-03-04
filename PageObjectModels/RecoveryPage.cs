@@ -2,10 +2,10 @@
 
 namespace LifePayTests.Object
 {
-    public class PageRecoveryObjectModel
+    public class RecoveryPage
     {
         private readonly IWebDriver _driver;
-        public PageRecoveryObjectModel(IWebDriver driver)
+        public RecoveryPage(IWebDriver driver)
         {
             _driver = driver;
         }

@@ -2,10 +2,10 @@
 
 namespace LifePayTests.Object
 {
-    public class PageSignInObjectModel
+    public class SignInPage
     {
         private readonly IWebDriver _driver;
-        public PageSignInObjectModel(IWebDriver driver)
+        public SignInPage(IWebDriver driver)
         {
             _driver = driver;
         }
