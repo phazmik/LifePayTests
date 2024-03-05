@@ -46,19 +46,14 @@ namespace LifePayTests.PageObjectModels
         public IWebElement newUserRegElement => _driver.FindElement(By.XPath("//a [@id='signin-lk']"));
 
         /// <summary>
-        /// Элемент текста Номер не зарегистрирован
+        /// Элемент текста предупреждения поля Номер телефона
         /// </summary>
-        public IWebElement noRegNumberElement => _driver.FindElement(By.XPath("//small [contains(text(), 'Номер не зарегистрирован')]"));
+        public IWebElement warningMessageNumberElement => _driver.FindElement(By.XPath("//lp-ui-input//label[text()='Номер телефона']//ancestor::lp-ui-input//small"));
 
         /// <summary>
-        /// Элемент текста Введите телефон в формате +7(911)111-11-11
+        /// Элемент текста предупреждения поля Пароля
         /// </summary>
-        public IWebElement inputCorrectNumberElement => _driver.FindElement(By.XPath("//small [contains(text(), 'Введите телефон в формате +7(911)111-11-11')]"));
-
-        /// <summary>
-        /// Элемент текста Введите телефон в формате +7(911)111-11-11
-        /// </summary>
-        public IWebElement inputCorrectPasswordElement => _driver.FindElement(By.XPath("//small [contains(text(), 'Значение должно быть не менее 6 знаков')]"));
+        public IWebElement warningMessagePasswordElement => _driver.FindElement(By.XPath("//lp-ui-input//label[text()='Пароль']//ancestor::lp-ui-input//small"));
 
         /// <summary>
         /// Элемент заголовка приветственного сообщения (Геркин)

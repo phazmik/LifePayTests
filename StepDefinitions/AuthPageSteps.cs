@@ -3,6 +3,7 @@ using LifePayTests.Support;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using System.Diagnostics;
 using TechTalk.SpecFlow;
 
 namespace LifePayTests.StepDefinitions
@@ -14,31 +15,6 @@ namespace LifePayTests.StepDefinitions
         public AuthPageSteps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
-        }
-
-        [Given(@"данные авторизации известны")]
-        public void GivenДанныеАвторизацииИзвестны()
-        {
-            _scenarioContext.Add("login", "+7 (911) 111-11-11");
-            _scenarioContext.Add("pass", "@12345678#pass!");
-        }
-
-        [Given(@"незарегистрированный номер известен")]
-        public void GivenНезарегистрированныйНомерИзвестен()
-        {
-            _scenarioContext.Add("unregLogin", "+7 (911) 111-11-12");
-        }
-
-        [Given(@"некорректный номер известен")]
-        public void GivenНекорректныйНомерИзвестен()
-        {
-            _scenarioContext.Add("incorrectLogin", "+7 (911) 111-11-1");
-        }
-
-        [Given(@"некорректный пароль известен")]
-        public void GivenНекорректныйПарольИзвестен()
-        {
-            _scenarioContext.Add("incorrectPass", "@1234");
         }
 
         [When(@"происходит нажатие на ссылку '([^']*)'")]
@@ -57,22 +33,22 @@ namespace LifePayTests.StepDefinitions
             }
         }
 
-        [When(@"поле ввода Номер телефона заполнено")]
-        public void WhenПолеВводаНомерТелефонаЗаполнено()
+        [When(@"поле ввода Номер телефона заполнено значением '([^']*)'")]
+        public void WhenПолеВводаНомерТелефонаЗаполненоЗначением(string phoneNumber)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var _pageObjectModel = new SignInPage(driver);
             _pageObjectModel.inputTelephoneElement.Clear();
-            _pageObjectModel.inputTelephoneElement.SendKeys((string)_scenarioContext["login"]);
+            _pageObjectModel.inputTelephoneElement.SendKeys(phoneNumber); 
         }
 
-        [When(@"поле ввода Пароль заполнено")]
-        public void WhenПолеВводаПарольЗаполнено()
+        [When(@"поле ввода Пароль заполнено значением '([^']*)'")]
+        public void WhenПолеВводаПарольЗаполненоЗначением(string password)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var _pageObjectModel = new SignInPage(driver);
-            _pageObjectModel.inputPasswordElement.Clear();
-            _pageObjectModel.inputPasswordElement.SendKeys((string)_scenarioContext["pass"]);
+            _pageObjectModel.inputTelephoneElement.Clear();
+            _pageObjectModel.inputTelephoneElement.SendKeys(password);
         }
 
         [Then(@"отображается '([^']*)'")]
@@ -81,7 +57,7 @@ namespace LifePayTests.StepDefinitions
             var driver = (IWebDriver)_scenarioContext["driver"];
             var _pageObjectModel = new SignInPage(driver);    
             Assert.IsTrue(_pageObjectModel.MessageElement(message).Displayed, "Greeting message is wrong");
-            driver.Close();
+            
             ToolsForTests.setTime(ToolsForTests.GetAPITimeMoscow().Result);
         }
 
@@ -94,60 +70,45 @@ namespace LifePayTests.StepDefinitions
             try
             {
                 Assert.AreEqual(link, currentURL);
-                driver.Close();
             }
             catch
             {
-                Console.WriteLine("URL is wrong");
+                Debug.WriteLine("URL is wrong");
             }
         }
 
-        [Then(@"поля ввода принимают соответствующие значения")]
-        public void ThenПоляВводаПринимаютСоответствующиеЗначения()
+        [Then(@"отображается значение '([^']*)' в поле ввода Номер телефона")]
+        public void ThenОтображаетсяЗначениеВПолеВводаНомерТелефона(string expectedPhoneNumber)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var _pageObjectModel = new SignInPage(driver);
-            string currentLogin = _pageObjectModel.inputTelephoneElement.GetAttribute("value");
-            string currentPass = _pageObjectModel.inputPasswordElement.GetAttribute("value");
-            
-            try
-            {
-                Assert.AreEqual((string)_scenarioContext["login"], currentLogin);
-                Assert.AreEqual((string)_scenarioContext["pass"], currentPass);
-                driver.Close();
-            }
-            catch 
-            {
-                Console.WriteLine("Fillment of fields is wrong");
-            } 
+            string actualPhoneNumber = _pageObjectModel.inputTelephoneElement.GetAttribute("value");
+            Assert.AreEqual(expectedPhoneNumber,actualPhoneNumber, "Fillment of phone number field is wrong");
         }
 
-        [Then(@"отображается сообщение Номер не зарегистрирован")]
-        public void ThenОтображаетсяСообщениеНомерНеЗарегистрирован()
+        [Then(@"отображается значение '([^']*)' в поле ввода Пароль")]
+        public void ThenОтображаетсяЗначениеВПолеВводаПароль(string expectedPassword)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var _pageObjectModel = new SignInPage(driver);
-            Thread.Sleep(250);
-            Assert.IsTrue(_pageObjectModel.noRegNumberElement.Displayed, "Message is missing");
-            driver.Close();
+            string actualPassword = _pageObjectModel.inputPasswordElement.GetAttribute("value");
+            Assert.AreEqual(expectedPassword, actualPassword, "Fillment of password field is wrong");
         }
 
-        [Then(@"отображается сообщение Введите номер в формате '([^']*)'")]
-        public void ThenОтображаетсяСообщениеВведитеНомерВФормате(string p0)
+        [Then(@"отображается предупреждение '([^']*)' в поле Номер телефона")]
+        public void ThenОтображаетсяПредупреждениеВПолеНомерТелефона(string expectedMessage)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var _pageObjectModel = new SignInPage(driver);
-            Assert.IsTrue(_pageObjectModel.inputCorrectNumberElement.Displayed, "Message is missing");
-            driver.Close();
+            Assert.AreEqual(expectedMessage,_pageObjectModel.warningMessageNumberElement.Text, "Message is missing");
         }
 
-        [Then(@"отображается сообщение Значение должно быть не менее (.*) знаков")]
-        public void ThenОтображаетсяСообщениеЗначениеДолжноБытьНеМенееЗнаков(int p0)
+        [Then(@"отображается предупреждение '([^']*)' в поле Пароль")]
+        public void ThenОтображаетсяПредупреждениеВПолеПароль(string expectedMessage)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var _pageObjectModel = new SignInPage(driver);
-            Assert.IsTrue(_pageObjectModel.inputCorrectPasswordElement.Displayed, "Message is missing");
-            driver.Close();
+            Assert.AreEqual(expectedMessage, _pageObjectModel.warningMessagePasswordElement.Text, "Message is missing");
         }
 
         [Given(@"Открыта страница авторизации LifePay")]
@@ -165,7 +126,6 @@ namespace LifePayTests.StepDefinitions
         public void WhenСистемноеВремяРавно(string hours)
         {
             ToolsForTests.setTime(hours);
-
         }
     }
 }
