@@ -6,8 +6,6 @@ namespace LifePayTests.Support
     public class ToolsForTests
     {
         private readonly IWebDriver _driver;
-        public string _login { get; set; } = "";
-        public string _pass { get; set; } = "";
         public ToolsForTests(IWebDriver driver)
         {
             _driver = driver;

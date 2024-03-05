@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
 
-namespace LifePayTests.Object
+namespace LifePayTests.PageObjectModels
 {
-    public class SignInPage
+    public class SignInPage : CommonPageObjects
     {
         private readonly IWebDriver _driver;
-        public SignInPage(IWebDriver driver)
+        public SignInPage(IWebDriver driver) : base(driver)
         {
             _driver = driver;
         }
@@ -26,26 +26,6 @@ namespace LifePayTests.Object
         public IWebElement sideTitleElement => _driver.FindElement(By.XPath("//h2[contains(text(),'Зайдите в личный кабинет')]"));
 
         /// <summary>
-        /// Элемент тела бокового текста
-        /// </summary>
-        public IWebElement sideBodyElement => _driver.FindElement(By.XPath("//ul [@_ngcontent-slg-c280]"));
-
-        /// <summary>
-        /// Элемент тела приветственного сообщения
-        /// </summary>
-        public IWebElement greetingMessageBodyElement => _driver.FindElement(By.XPath("//div [@class='description']"));
-
-        /// <summary>
-        /// Элемент окна ввода номера телефона
-        /// </summary>
-        public IWebElement inputTelephoneElement => _driver.FindElement(By.XPath("//input [@type='tel']"));
-
-        /// <summary>
-        /// Элемент окна ввода пароля
-        /// </summary>
-        public IWebElement inputPasswordElement => _driver.FindElement(By.XPath("//input [@type='password']"));
-
-        /// <summary>
         /// Элемент переключателя отображения пароля
         /// </summary>
         public IWebElement switchPasswordHide => _driver.FindElement(By.XPath("//div [@class='svg-wrapper password-input ng-star-inserted']"));
@@ -64,11 +44,6 @@ namespace LifePayTests.Object
         /// Элемент ссылки для создания аккаунта
         /// </summary>
         public IWebElement newUserRegElement => _driver.FindElement(By.XPath("//a [@id='signin-lk']"));
-
-        /// <summary>
-        /// Элемент текста сопровождающего для создания аккаунта
-        /// </summary>
-        public IWebElement textNewUserRegElement => _driver.FindElement(By.XPath("//span [@_ngcontent-iof-c277]"));
 
         /// <summary>
         /// Элемент текста Номер не зарегистрирован

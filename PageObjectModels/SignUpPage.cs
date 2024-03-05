@@ -1,11 +1,11 @@
 ﻿using OpenQA.Selenium;
 
-namespace LifePayTests.Object
+namespace LifePayTests.PageObjectModels
 {
-    public class SignUpPage
+    public class SignUpPage : CommonPageObjects
     {
         private readonly IWebDriver _driver;
-        public SignUpPage(IWebDriver driver) 
+        public SignUpPage(IWebDriver driver) : base(driver)
         { 
             _driver = driver; 
         }
@@ -13,21 +13,6 @@ namespace LifePayTests.Object
         /// Элемент заголовка приветственного сообщения
         /// </summary>
         public IWebElement greetingMessageElement => _driver.FindElement(By.XPath("//h2[contains(text(),'Добр')]"));
-
-        /// <summary>
-        /// Элемент логотипа
-        /// </summary>
-        public IWebElement logoElement => _driver.FindElement(By.XPath("//div [@class='logo-bar']"));
-
-        /// <summary>
-        /// Элемент окна ввода номера телефона
-        /// </summary>
-        public IWebElement inputTelephoneElement => _driver.FindElement(By.XPath("//input [@type='tel']"));
-
-        /// <summary>
-        /// Элемент окна ввода пароля
-        /// </summary>
-        public IWebElement inputPasswordElement => _driver.FindElement(By.XPath("//input [@type='password']"));
 
         /// <summary>
         /// Элемент окна ввода кода из СМС
@@ -43,11 +28,6 @@ namespace LifePayTests.Object
         /// Элемент заголовка колонки текста
         /// </summary>
         public IWebElement sideTitleElement => _driver.FindElement(By.XPath("//h2 [contains (text(), 'Созд')]"));
-
-        /// <summary>
-        /// Элемент тела колонки текста
-        /// </summary>
-        public IWebElement sideBodyTextElement => _driver.FindElement(By.XPath("//ul [@_ngcontent-hfo-c280]"));
 
         /// <summary>
         /// Элемент тела приветственного сообщения
