@@ -182,7 +182,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Переход по ссылкам экрана Авторизации")]
         [NUnit.Framework.CategoryAttribute("link_test")]
         [NUnit.Framework.TestCaseAttribute("Восстановить пароль", "https://my.life-pos.ru/auth/recovery", new string[] {
-                "id_reset_pass"}, Category="id_reset_pass")]
+                "id_recovery"}, Category="id_recovery")]
         [NUnit.Framework.TestCaseAttribute("Заведите аккаунт", "https://my.life-pos.ru/auth/sign-up", new string[] {
                 "id_sign_up"}, Category="id_sign_up")]
         public virtual void ПереходПоСсылкамЭкранаАвторизации(string текстСсылки, string ссылка, string[] exampleTags)
@@ -266,10 +266,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Открыта страница авторизации LifePay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Допустим ");
 #line hidden
 #line 58
- testRunner.When("поле ввода Номер телефона заполнено значением \'+7(911)111-11-12\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
+ testRunner.When("поле ввода Номер телефона заполнено значением \'<Номер телефона>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
 #line 59
- testRunner.Then("отображается предупреждение \'Номер не зарегистрирован\' в поле Номер телефона", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
+ testRunner.Then("отображается предупреждение \'<Предупреждение>\' в поле Номер телефона", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -279,11 +279,22 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Отображение предупреждения поля Номер телефона при введении номера телефона в нек" +
             "орретном формате")]
         [NUnit.Framework.CategoryAttribute("incorrect_num")]
-        public virtual void ОтображениеПредупрежденияПоляНомерТелефонаПриВведенииНомераТелефонаВНекорретномФормате()
+        [NUnit.Framework.TestCaseAttribute("+7(911)111-11-12", "Номер не зарегистрирован", new string[] {
+                "id_unreg_phone"}, Category="id_unreg_phone")]
+        [NUnit.Framework.TestCaseAttribute("+7(911)111-11-1", "Номер не зарегистрирован", new string[] {
+                "id_incorrect_phone"}, Category="id_incorrect_phone")]
+        public virtual void ОтображениеПредупрежденияПоляНомерТелефонаПриВведенииНомераТелефонаВНекорретномФормате(string номерТелефона, string предупреждение, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "incorrect_num"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Номер телефона", номерТелефона);
+            argumentsOfScenario.Add("Предупреждение", предупреждение);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Отображение предупреждения поля Номер телефона при введении номера телефона в нек" +
                     "орретном формате", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 62
@@ -331,7 +342,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Отображение предупреждения поля Номер телефона при введении пароля длиной менее 6" +
                     " знаков", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 68
+#line 78
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -351,13 +362,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 69
+#line 79
  testRunner.Given("Открыта страница авторизации LifePay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Допустим ");
 #line hidden
-#line 70
+#line 80
  testRunner.When("поле ввода Пароль заполнено значением \'@1234\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 71
+#line 81
  testRunner.Then("отображается предупреждение \'Значение должно быть не менее 6 знаков\' в поле Парол" +
                         "ь", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
@@ -374,7 +385,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "successful_auth_no_inplimentation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Успешная авторизация", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 74
+#line 84
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -394,19 +405,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 75
+#line 85
  testRunner.Given("Открыта страница авторизации LifePay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Допустим ");
 #line hidden
-#line 76
+#line 86
  testRunner.When("поле ввода Номер телефона заполнено значением", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 77
+#line 87
  testRunner.And("поле ввода Пароль заполнено значением", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 78
+#line 88
  testRunner.And("нажата кнопка Войти в личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 79
+#line 89
  testRunner.Then("происходит редирект в личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -422,7 +433,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "successful_reg_no_inplimentation"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Успешная регистрация", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 82
+#line 92
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -442,25 +453,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 83
+#line 93
  testRunner.Given("Открыта страница авторизации LifePay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Допустим ");
 #line hidden
-#line 84
+#line 94
  testRunner.When("поле ввода Номер телефона заполнено значением", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 85
+#line 95
  testRunner.And("поле ввода Код из SMS заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 86
+#line 96
  testRunner.And("поле ввода Ваше имя и фамилия заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 87
+#line 97
  testRunner.And("поле ввода Пароль заполнено значением", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 88
+#line 98
  testRunner.And("нажата кнопка Создать личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 89
+#line 99
  testRunner.Then("происходит редирект в личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
