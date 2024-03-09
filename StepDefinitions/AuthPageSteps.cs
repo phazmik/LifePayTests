@@ -25,11 +25,20 @@ namespace LifePayTests.StepDefinitions
             switch (linkName)
             {
                 case "Восстановить пароль":
-                    _pageObjectModel.linkRecoveryPasswordElement.Click();
-                    break;
+                    {
+                        _pageObjectModel.linkRecoveryPasswordElement.Click();
+                        break;
+                    }
                 case "Заведите аккаунт":
-                    _pageObjectModel.newUserRegElement.Click();
-                    break;
+                    {
+                        _pageObjectModel.newUserRegElement.Click();
+                        break;
+                    }
+                default:
+                    {
+                        //TODO прописать действия при несрабатывании кейсов
+                        break;
+                    }
             }
         }
 
