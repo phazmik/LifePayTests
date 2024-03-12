@@ -41,7 +41,7 @@ namespace LifePayTests.StepDefinitions
                     }
             }
         }
-
+        //TODO Исправить имплеминтацию степов по заполнению полей ввода
         [When(@"поле ввода Номер телефона заполнено значением '([^']*)'")]
         public void WhenПолеВводаНомерТелефонаЗаполненоЗначением(string phoneNumber)
         {
@@ -85,7 +85,7 @@ namespace LifePayTests.StepDefinitions
                 Debug.WriteLine("URL is wrong");
             }
         }
-
+        //TODO Исправить степы с отображением значений в полях ввода
         [Then(@"отображается значение '([^']*)' в поле ввода Номер телефона")]
         public void ThenОтображаетсяЗначениеВПолеВводаНомерТелефона(string expectedPhoneNumber)
         {
