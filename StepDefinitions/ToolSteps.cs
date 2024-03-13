@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using TechTalk.SpecFlow;
 
-namespace LifePayTests.StepDefinitions
+namespace StepDefinitions
 {
     [Binding]
     public class ToolSteps

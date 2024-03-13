@@ -1,7 +1,10 @@
 ﻿using OpenQA.Selenium;
 
-namespace LifePayTests.PageObjectModels
+namespace PageObjectModels
 {
+    /// <summary>
+    /// Элементы страницы Восстановление пароля
+    /// </summary>
     public class RecoveryPage : CommonPageObjects
     {
         private readonly IWebDriver _driver;
@@ -13,26 +16,26 @@ namespace LifePayTests.PageObjectModels
         /// <summary>
         /// Элемент кнопки Назад
         /// </summary>
-        public IWebElement backButtonElement => _driver.FindElement(By.XPath("//button [1]"));
+        public IWebElement BackButtonElement => _driver.FindElement(By.XPath("//button [1]"));
 
         /// <summary>
         /// Элемент окна ввода кода из СМС
         /// </summary>
-        public IWebElement inputPasswordSMSElement => _driver.FindElement(By.XPath("//input [@type='text']"));
+        public IWebElement InputPasswordSMSElement => _driver.FindElement(By.XPath("//input [@type='text']"));
 
         /// <summary>
         /// Элемент кнопки Отправить код
         /// </summary>
-        public IWebElement sendCodeButtonElement => _driver.FindElement(By.XPath("//button [2]"));
+        public IWebElement SendCodeButtonElement => _driver.FindElement(By.XPath("//button [2]"));
 
         /// <summary>
         /// Элемент кнопки Продолжить
         /// </summary>
-        public IWebElement continueButtonElement => _driver.FindElement(By.XPath("//button [@id='continue-restore-pass']"));
+        public IWebElement ContinueButtonElement => _driver.FindElement(By.XPath("//button [@id='continue-restore-pass']"));
 
         /// <summary>
         /// Элемент заголовка колонки текста
         /// </summary>
-        public IWebElement sideTitleElement => _driver.FindElement(By.XPath("//h2 [contains (text(), 'Восстановите')]"));
+        public IWebElement SideTitleElement => _driver.FindElement(By.XPath("//h2 [contains (text(), 'Восстановите')]"));
     }
 }

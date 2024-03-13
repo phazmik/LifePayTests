@@ -1,12 +1,10 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LifePayTests.PageObjectModels
+namespace PageObjectModels
 {
+    /// <summary>
+    /// Элементы общие для всех проверяемых страниц
+    /// </summary>
     public class CommonPageObjects
     {
         private readonly IWebDriver _driver;
@@ -18,31 +16,31 @@ namespace LifePayTests.PageObjectModels
         /// <summary>
         /// Элемент логотипа
         /// </summary>
-        public IWebElement logoElement => _driver.FindElement(By.XPath("//div [@class='logo-bar']"));
+        public IWebElement LogoElement => _driver.FindElement(By.XPath("//div [@class='logo-bar']"));
 
         /// <summary>
         /// Элемент окна ввода номера телефона
         /// </summary>
-        public IWebElement inputTelephoneElement => _driver.FindElement(By.XPath("//input [@type='tel']"));
+        public IWebElement InputTelephoneElement => _driver.FindElement(By.XPath("//input [@type='tel']"));
 
         /// <summary>
         /// Элемент окна ввода пароля
         /// </summary>
-        public IWebElement inputPasswordElement => _driver.FindElement(By.XPath("//input [@type='password']"));
+        public IWebElement InputPasswordElement => _driver.FindElement(By.XPath("//input [@type='password']"));
 
         /// <summary>
         /// Элемент тела колонки текста
         /// </summary>
-        public IWebElement sideBodyTextElement => _driver.FindElement(By.XPath("//div [@class='column description-column ng-star-inserted']"));
+        public IWebElement SideBodyTextElement => _driver.FindElement(By.XPath("//div [@class='column description-column ng-star-inserted']"));
 
         /// <summary>
         /// Элемент текстового заголовка 
         /// </summary>
-        public IWebElement titleTextElement => _driver.FindElement(By.XPath("//h2[@class='title']"));
+        public IWebElement TitleTextElement => _driver.FindElement(By.XPath("//h2[@class='title']"));
 
         /// <summary>
         /// Элемент текста описания заголовка
         /// </summary>
-        public IWebElement greetingMessageBodyElement => _driver.FindElement(By.XPath("//div [@class='description']"));
+        public IWebElement GreetingMessageBodyElement => _driver.FindElement(By.XPath("//div [@class='description']"));
     }
 }

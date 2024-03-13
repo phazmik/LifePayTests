@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using System.Diagnostics;
 
-namespace LifePayTests.Support
+namespace Support
 {
     public class ToolsForTests
     {
