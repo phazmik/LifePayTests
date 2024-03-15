@@ -33,31 +33,33 @@ namespace StepDefinitions
                         pageObjectModel.NewUserRegElement.Click();
                         break;
                     }
-                default:
-                    {
-                        //TODO прописать действия при несрабатывании кейсов
-                        break;
-                    }
+                default: new KeyNotFoundException(linkName);
+                    break;
             }
         }
-        //TODO Исправить имплеминтацию степов по заполнению полей ввода
-        [When(@"поле ввода Номер телефона заполнено значением '([^']*)'")]
-        public void WhenПолеВводаНомерТелефонаЗаполненоЗначением(string phoneNumber)
+        
+        [When(@"поле ввода '([^']*)' заполнено значением '([^']*)'")]
+        public void WhenПолеВводаЗаполненоЗначением(string fieldName, string value)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var pageObjectModel = new SignInPage(driver);
-            pageObjectModel.InputTelephoneElement.Clear();
-            pageObjectModel.InputTelephoneElement.SendKeys(phoneNumber); 
+            switch (fieldName) 
+            {
+                case "Номер телефона":
+                    pageObjectModel.InputTelephoneElement.Clear();
+                    pageObjectModel.InputTelephoneElement.SendKeys(value);
+                    break;
+
+                case "Пароль":
+                    pageObjectModel.InputPasswordElement.Clear();
+                    pageObjectModel.InputPasswordElement.SendKeys(value);
+                    break;
+                default:
+                    new KeyNotFoundException(fieldName);
+                    break;
+            }
         }
 
-        [When(@"поле ввода Пароль заполнено значением '([^']*)'")]
-        public void WhenПолеВводаПарольЗаполненоЗначением(string password)
-        {
-            var driver = (IWebDriver)_scenarioContext["driver"];
-            var pageObjectModel = new SignInPage(driver);
-            pageObjectModel.InputTelephoneElement.Clear();
-            pageObjectModel.InputTelephoneElement.SendKeys(password);
-        }
 
         [Then(@"отображается '([^']*)'")]
         public void ThenОтображается(string message)
@@ -77,39 +79,45 @@ namespace StepDefinitions
             Assert.AreEqual(link, currentURL, "URL is wrong");
 
         }
-        //TODO Исправить степы с отображением значений в полях ввода
-        [Then(@"отображается значение '([^']*)' в поле ввода Номер телефона")]
-        public void ThenОтображаетсяЗначениеВПолеВводаНомерТелефона(string expectedPhoneNumber)
+       
+        [Then(@"отображается значение '([^']*)' в поле ввода '([^']*)'")]
+        public void ThenОтображаетсяЗначениеВПолеВвода(string expectedValue, string fieldName)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var pageObjectModel = new SignInPage(driver);
-            string actualPhoneNumber = pageObjectModel.InputTelephoneElement.GetAttribute("value");
-            Assert.AreEqual(expectedPhoneNumber,actualPhoneNumber, "Fillment of phone number field is wrong");
+            switch (fieldName)
+            {
+                case "Номер телефона":
+                    string actualPhoneNumber = pageObjectModel.InputTelephoneElement.GetAttribute("value");
+                    Assert.AreEqual(expectedValue, actualPhoneNumber, "Fillment of phone number field is wrong");
+                    break;
+                case "Пароль":
+                    string actualPassword = pageObjectModel.InputPasswordElement.GetAttribute("value");
+                    Assert.AreEqual(expectedValue, actualPassword, "Fillment of password field is wrong");
+                    break;
+                default:
+                    new KeyNotFoundException(fieldName);
+                    break;
+            }
         }
 
-        [Then(@"отображается значение '([^']*)' в поле ввода Пароль")]
-        public void ThenОтображаетсяЗначениеВПолеВводаПароль(string expectedPassword)
+        [Then(@"отображается предупреждение '([^']*)' в поле '([^']*)'")]
+        public void ThenОтображаетсяПредупреждениеВПоле(string expectedMessage, string fieldName)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var pageObjectModel = new SignInPage(driver);
-            string actualPassword = pageObjectModel.InputPasswordElement.GetAttribute("value");
-            Assert.AreEqual(expectedPassword, actualPassword, "Fillment of password field is wrong");
-        }
-
-        [Then(@"отображается предупреждение '([^']*)' в поле Номер телефона")]
-        public void ThenОтображаетсяПредупреждениеВПолеНомерТелефона(string expectedMessage)
-        {
-            var driver = (IWebDriver)_scenarioContext["driver"];
-            var pageObjectModel = new SignInPage(driver);
-            Assert.AreEqual(expectedMessage,pageObjectModel.WarningMessageNumberElement.Text, "Message is missing");
-        }
-
-        [Then(@"отображается предупреждение '([^']*)' в поле Пароль")]
-        public void ThenОтображаетсяПредупреждениеВПолеПароль(string expectedMessage)
-        {
-            var driver = (IWebDriver)_scenarioContext["driver"];
-            var pageObjectModel = new SignInPage(driver);
-            Assert.AreEqual(expectedMessage, pageObjectModel.WarningMessagePasswordElement.Text, "Message is missing");
+                switch (fieldName)
+                {
+                    case "Номер телефона":
+                        Assert.AreEqual(expectedMessage, pageObjectModel.WarningMessageNumberElement.Text, "Message is missing");
+                        break;
+                    case "Пароль":
+                        Assert.AreEqual(expectedMessage, pageObjectModel.WarningMessagePasswordElement.Text, "Message is missing");
+                        break;
+                    default:
+                        new KeyNotFoundException(fieldName);
+                        break;
+                }
         }
 
         [Given(@"Открыта страница авторизации LifePay")]
