@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using OpenQA.Selenium;
+using System.Diagnostics;
 
-namespace LifePayTests.Support
+namespace Support
 {
     public class ToolsForTests
     {
         private readonly IWebDriver _driver;
-        public string _login { get; set; } = "";
-        public string _pass { get; set; } = "";
         public ToolsForTests(IWebDriver driver)
         {
             _driver = driver;
@@ -25,8 +24,9 @@ namespace LifePayTests.Support
             {
                 System.Diagnostics.Process.Start(proc);
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
             }
         }
         static readonly HttpClient client = new HttpClient();
@@ -45,8 +45,8 @@ namespace LifePayTests.Support
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                Debug.WriteLine("\nException Caught!");
+                Debug.WriteLine("Message :{0} ", e.Message);
             }
             return "";
         }
