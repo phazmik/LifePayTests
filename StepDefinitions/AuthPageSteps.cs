@@ -21,18 +21,15 @@ namespace StepDefinitions
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var signInPage = new SignInPage(driver);
+
             switch (linkName)
             {
                 case "Восстановить пароль":
-                    {
                         signInPage.LinkRecoveryPasswordElement.Click();
                         break;
-                    }
                 case "Заведите аккаунт":
-                    {
                         signInPage.NewUserRegElement.Click();
                         break;
-                    }
                 default: new KeyNotFoundException(linkName);
                     break;
             }
@@ -43,13 +40,13 @@ namespace StepDefinitions
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var signInPage = new SignInPage(driver);
+
             switch (fieldName) 
             {
                 case "Номер телефона":
                     signInPage.InputTelephoneElement.Clear();
                     signInPage.InputTelephoneElement.SendKeys(value);
                     break;
-
                 case "Пароль":
                     signInPage.InputPasswordElement.Clear();
                     signInPage.InputPasswordElement.SendKeys(value);
@@ -77,7 +74,6 @@ namespace StepDefinitions
             var driver = (IWebDriver)_scenarioContext["driver"];
             string currentURL = driver.Url;
             Assert.AreEqual(link, currentURL, "URL is wrong");
-
         }
        
         [Then(@"отображается значение '([^']*)' в поле ввода '([^']*)'")]
@@ -85,6 +81,7 @@ namespace StepDefinitions
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var signInPage = new SignInPage(driver);
+
             switch (fieldName)
             {
                 case "Номер телефона":
@@ -106,18 +103,19 @@ namespace StepDefinitions
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
             var signInPage = new SignInPage(driver);
-                switch (fieldName)
-                {
-                    case "Номер телефона":
-                        Assert.AreEqual(expectedMessage, signInPage.WarningMessageNumberElement.Text, "Message is missing");
-                        break;
-                    case "Пароль":
-                        Assert.AreEqual(expectedMessage, signInPage.WarningMessagePasswordElement.Text, "Message is missing");
-                        break;
-                    default:
-                        new KeyNotFoundException(fieldName);
-                        break;
-                }
+
+            switch (fieldName)
+            {
+                case "Номер телефона":
+                    Assert.AreEqual(expectedMessage, signInPage.WarningMessageNumberElement.Text, "Message is missing");
+                    break;
+                case "Пароль":
+                    Assert.AreEqual(expectedMessage, signInPage.WarningMessagePasswordElement.Text, "Message is missing");
+                    break;
+                default:
+                    new KeyNotFoundException(fieldName);
+                    break;
+            }
         }
 
         [Given(@"Открыта страница авторизации LifePay")]
@@ -127,6 +125,7 @@ namespace StepDefinitions
             var driver = new OpenQA.Selenium.Chrome.ChromeDriver();
             driver.Navigate().GoToUrl("https://my.life-pos.ru/auth/login");
             driver.Manage().Window.Maximize();
+
             _scenarioContext.Add("driver", driver);
         }
 
