@@ -138,7 +138,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Успешное заполнение полей ввода при авторизации")]
         [NUnit.Framework.CategoryAttribute("field_fill")]
         [NUnit.Framework.CategoryAttribute("id_fi001")]
-        [NUnit.Framework.TestCaseAttribute("Номер телефона", "+7(911)111-11-11", null)]
+        [NUnit.Framework.TestCaseAttribute("Номер телефона", "+7 (911) 111-11-11", null)]
         [NUnit.Framework.TestCaseAttribute("Пароль", "@12345#6789!", null)]
         public virtual void УспешноеЗаполнениеПолейВводаПриАвторизации(string имяПоля, string значение, string[] exampleTags)
         {

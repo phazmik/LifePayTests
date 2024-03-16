@@ -20,17 +20,17 @@ namespace StepDefinitions
         public void WhenПроисходитНажатиеНаСсылку(string linkName)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var pageObjectModel = new SignInPage(driver);
+            var signInPage = new SignInPage(driver);
             switch (linkName)
             {
                 case "Восстановить пароль":
                     {
-                        pageObjectModel.LinkRecoveryPasswordElement.Click();
+                        signInPage.LinkRecoveryPasswordElement.Click();
                         break;
                     }
                 case "Заведите аккаунт":
                     {
-                        pageObjectModel.NewUserRegElement.Click();
+                        signInPage.NewUserRegElement.Click();
                         break;
                     }
                 default: new KeyNotFoundException(linkName);
@@ -42,17 +42,17 @@ namespace StepDefinitions
         public void WhenПолеВводаЗаполненоЗначением(string fieldName, string value)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var pageObjectModel = new SignInPage(driver);
+            var signInPage = new SignInPage(driver);
             switch (fieldName) 
             {
                 case "Номер телефона":
-                    pageObjectModel.InputTelephoneElement.Clear();
-                    pageObjectModel.InputTelephoneElement.SendKeys(value);
+                    signInPage.InputTelephoneElement.Clear();
+                    signInPage.InputTelephoneElement.SendKeys(value);
                     break;
 
                 case "Пароль":
-                    pageObjectModel.InputPasswordElement.Clear();
-                    pageObjectModel.InputPasswordElement.SendKeys(value);
+                    signInPage.InputPasswordElement.Clear();
+                    signInPage.InputPasswordElement.SendKeys(value);
                     break;
                 default:
                     new KeyNotFoundException(fieldName);
@@ -65,8 +65,8 @@ namespace StepDefinitions
         public void ThenОтображается(string message)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var pageObjectModel = new SignInPage(driver);    
-            Assert.IsTrue(pageObjectModel.MessageElement(message).Displayed, "Greeting message is wrong");
+            var signInPage = new SignInPage(driver);    
+            Assert.IsTrue(signInPage.MessageElement(message).Displayed, "Greeting message is wrong");
             
             ToolsForTests.setTime(ToolsForTests.GetAPITimeMoscow().Result);
         }
@@ -84,15 +84,15 @@ namespace StepDefinitions
         public void ThenОтображаетсяЗначениеВПолеВвода(string expectedValue, string fieldName)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var pageObjectModel = new SignInPage(driver);
+            var signInPage = new SignInPage(driver);
             switch (fieldName)
             {
                 case "Номер телефона":
-                    string actualPhoneNumber = pageObjectModel.InputTelephoneElement.GetAttribute("value");
+                    string actualPhoneNumber = signInPage.InputTelephoneElement.GetAttribute("value");
                     Assert.AreEqual(expectedValue, actualPhoneNumber, "Fillment of phone number field is wrong");
                     break;
                 case "Пароль":
-                    string actualPassword = pageObjectModel.InputPasswordElement.GetAttribute("value");
+                    string actualPassword = signInPage.InputPasswordElement.GetAttribute("value");
                     Assert.AreEqual(expectedValue, actualPassword, "Fillment of password field is wrong");
                     break;
                 default:
@@ -105,14 +105,14 @@ namespace StepDefinitions
         public void ThenОтображаетсяПредупреждениеВПоле(string expectedMessage, string fieldName)
         {
             var driver = (IWebDriver)_scenarioContext["driver"];
-            var pageObjectModel = new SignInPage(driver);
+            var signInPage = new SignInPage(driver);
                 switch (fieldName)
                 {
                     case "Номер телефона":
-                        Assert.AreEqual(expectedMessage, pageObjectModel.WarningMessageNumberElement.Text, "Message is missing");
+                        Assert.AreEqual(expectedMessage, signInPage.WarningMessageNumberElement.Text, "Message is missing");
                         break;
                     case "Пароль":
-                        Assert.AreEqual(expectedMessage, pageObjectModel.WarningMessagePasswordElement.Text, "Message is missing");
+                        Assert.AreEqual(expectedMessage, signInPage.WarningMessagePasswordElement.Text, "Message is missing");
                         break;
                     default:
                         new KeyNotFoundException(fieldName);
