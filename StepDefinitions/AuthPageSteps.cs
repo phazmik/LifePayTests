@@ -4,7 +4,6 @@ using PageObjectModels;
 using Support;
 using TechTalk.SpecFlow;
 
-
 namespace StepDefinitions
 {
     [Binding]
@@ -65,7 +64,7 @@ namespace StepDefinitions
             var signInPage = new SignInPage(driver);    
             Assert.IsTrue(signInPage.MessageElement(message).Displayed, "Greeting message is wrong");
             
-            ToolsForTests.setTime(ToolsForTests.GetAPITimeMoscow().Result);
+            ToolsForTests.setSystemTime(ToolsForTests.GetAPITimeMoscow().Result);
         }
 
         [Then(@"происходит переход по ссылке '([^']*)'")]
@@ -133,7 +132,7 @@ namespace StepDefinitions
         [When(@"системное время равно (.*)")]
         public void WhenСистемноеВремяРавно(string hours)
         {
-            ToolsForTests.setTime(hours);
+            ToolsForTests.setSystemTime(hours);
         }
     }
 }
