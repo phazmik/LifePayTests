@@ -6,12 +6,6 @@ namespace StepDefinitions
     [Binding]
     public class ToolSteps
     {
-        private readonly ScenarioContext _scenarioContext;
-        public ToolSteps(ScenarioContext scenarioContext)
-        {
-            _scenarioContext = scenarioContext;
-        }
-
         [AfterTestRun]
         public static void AfterTestRun()
         {

@@ -314,7 +314,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "id_au001"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Успешная авторизация", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 85
+#line 87
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -334,19 +334,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 86
+#line 88
  testRunner.Given("Открыта страница авторизации LifePay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Допустим ");
 #line hidden
-#line 87
+#line 89
  testRunner.When("поле ввода Номер телефона заполнено значением", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 88
+#line 90
  testRunner.And("поле ввода Пароль заполнено значением", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 89
+#line 91
  testRunner.And("нажата кнопка Войти в личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 90
+#line 92
  testRunner.Then("происходит редирект в личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }
@@ -364,7 +364,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "id_re001"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Успешная регистрация", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 93
+#line 95
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -384,25 +384,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 94
+#line 96
  testRunner.Given("Открыта страница авторизации LifePay", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Допустим ");
 #line hidden
-#line 95
+#line 97
  testRunner.When("поле ввода Номер телефона заполнено значением", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Когда ");
 #line hidden
-#line 96
+#line 98
  testRunner.And("поле ввода Код из SMS заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 97
+#line 99
  testRunner.And("поле ввода Ваше имя и фамилия заполнено", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 98
+#line 100
  testRunner.And("поле ввода Пароль заполнено значением", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 99
+#line 101
  testRunner.And("нажата кнопка Создать личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "И ");
 #line hidden
-#line 100
+#line 102
  testRunner.Then("происходит редирект в личный кабинет", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Тогда ");
 #line hidden
             }

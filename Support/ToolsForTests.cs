@@ -1,19 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
-using OpenQA.Selenium;
 using System.Diagnostics;
 
 namespace Support
 {
-    public class ToolsForTests
+    public static class ToolsForTests
     {
-        private readonly IWebDriver _driver;
-        public ToolsForTests(IWebDriver driver)
+        public static void setSystemTime(string timeInYourSystemFormat)
         {
-            _driver = driver;
-        }
-        public static void setTime(string timeInYourSystemFormat)
-        {
-            var proc = new System.Diagnostics.ProcessStartInfo();
+            var proc = new ProcessStartInfo();
             proc.UseShellExecute = true;
             proc.WorkingDirectory = @"C:\Windows\System32";
             proc.CreateNoWindow = true;
@@ -22,19 +16,19 @@ namespace Support
             proc.Arguments = "/C time " + timeInYourSystemFormat;
             try
             {
-                System.Diagnostics.Process.Start(proc);
+                Process.Start(proc);
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e);
             }
         }
-        static readonly HttpClient client = new HttpClient();
-
+        
         public static async Task<string> GetAPITimeMoscow()
         {
             try
             {
+                HttpClient client = new HttpClient();
                 HttpResponseMessage responseMessage = await client.GetAsync("http://worldtimeapi.org/api/timezone/Europe/Moscow");
                 responseMessage.EnsureSuccessStatusCode();
                 string responseBody = await responseMessage.Content.ReadAsStringAsync();
